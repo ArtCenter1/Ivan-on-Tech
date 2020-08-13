@@ -1,7 +1,9 @@
-programa solidity 0.5.12;
+pragma solidity 0.5.12;
 contract HelloWorld{
   //state variables
-
-  //
-  function getMessage public view()
+  String public Message = "Hello World";
+  //Functions
+  function setMessage(string memory newMessage) public {
+    Message = newMessage;
+  }
 }
