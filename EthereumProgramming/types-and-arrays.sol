@@ -17,4 +17,7 @@ contract TypesArrays{
     function setNumber(uint index,uint newNumber) public{
       numbers[index] = newNumber;
     }
+    function addNumber(uint newNumber) public{
+      numbers.push(newNumber);
+    }
 }

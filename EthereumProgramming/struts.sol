@@ -2,13 +2,20 @@ pragma solidity 0.5.12;
 
 contract Struts{
 //state variables
-    string public message = "Hello World";
-    uint[] public numbers = [1, 20, 45];
+    struct Person {
+      uint id;
+      string name;
+      uint age;
+      uint height;
+    }
+    Person[] public people;
 //Functions
-    function getMessage() public view returns(string memory){
-        return message;
-    }
-    function setMessage(string memory newMessage) public {
-      message = newMessage;
-    }
+    function createPerson(string memory name,uint age,uint height) public{
+    //people.push( Person(people.length, name, age, height));
+      Person memory newPerson;
+      newPerson.id = people.length;
+      newPerson.name = name;
+      newPerson.age = age;
+      newPerson.hight = hight;
+      people.push(newPerson);
 }
