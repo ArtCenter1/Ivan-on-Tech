@@ -16,6 +16,6 @@ contract Struts{
       newPerson.id = people.length;
       newPerson.name = name;
       newPerson.age = age;
-      newPerson.hight = hight;
+      newPerson.height = height;
       people.push(newPerson);
 }
