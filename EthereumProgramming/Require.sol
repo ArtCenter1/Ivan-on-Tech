@@ -1,11 +1,12 @@
 pragma solidity 0.5.12;
 
-contract Mapping{
+contract Require{
 //state variables
   struct Person {
     string name;
     uint age;
-    uint height;
+    uint height
+    bool senior;
   }
   mapping(address=> Person) private people;
 //Functions
@@ -16,6 +17,16 @@ contract Mapping{
   newPerson.name = name;
   newPerson.age = age;
   newPerson.height = height;
+  if(age >= 65){
+          newPerson.senior = true;
+      }
+      else{
+          newPerson.senior = false;
+      }
+
+       insertPerson(newPerson);
+       creators.push(msg.sender);
+   }
   people[creator] = newPerson;
   }
   function getPerson() public view returns(string memory name,uint age,uint height){
