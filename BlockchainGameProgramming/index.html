@@ -19,6 +19,14 @@
             preload: gamePreload,
             create: gameCreate,
             update: gameUpdate
+          },
+
+          physics:{
+            default:"arcade",
+            arcade:{
+              gravity:{y:200},
+              debug:false
+            }
           }
         }
 
@@ -31,7 +39,7 @@
         function gameCreate(){
           // initial setup logic on the asset and othere setup
           console.log("game is setting up the assets etc");
-          this.add.image(400,0,"knight")
+          this.physics.add.sprite(100,100,"knight");
         }
 
         function gameUpdate(){
