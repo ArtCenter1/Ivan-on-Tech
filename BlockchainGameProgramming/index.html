@@ -13,7 +13,7 @@
         //configure the game(hight, width, render-type, game loop)
         var config ={
           width: 800,
-          height: 600,
+          height: 500,
           type:Phaser.AUTO,
           scene:{
             preload: gamePreload,
@@ -25,16 +25,18 @@
         function gamePreload(){
           // loading assets
           console.log("game is loading assets");
+          this.load.image("knight","assets/knight.png");
         }
 
         function gameCreate(){
           // initial setup logic on the asset and othere setup
           console.log("game is setting up the assets etc");
+          this.add.image(100,0,"knight")
         }
 
         function gameUpdate(){
           // monitoring input and telling game how to update
-          console.log("game is updating");
+          //console.log("game is updating");
         }
 
         var game = new Phaser.Game(config);
