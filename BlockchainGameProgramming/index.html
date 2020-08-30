@@ -42,7 +42,8 @@
           console.log("game is setting up the assets etc");
           // create the knight
           var knight = this.physics.add.sprite(200,100,"knight");
-          knight.scaleX = 0.2;
+          knight.body.setSize(400,600,10,0);
+          knight.scaleX = 0.3;
           knight.scaleY = knight.scaleX;
 
           // create the crates
