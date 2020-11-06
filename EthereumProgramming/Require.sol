@@ -50,3 +50,5 @@ contract Require{
   function getCreator(uint index) public view returns(address){
       require(msg.sender == owner, "Caller needs to be owner");
       return creators[index];
+  }  
+}
