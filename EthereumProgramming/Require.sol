@@ -40,8 +40,6 @@ contract Require{
   function getPerson() public view returns(string memory name,uint age,uint height,bool senior){
       address creator = msg.sender;
       return (people[creator].name,people[creator].age,people[creator].height,people[creator].senior);
-<<<<<<< HEAD
-=======
   }
 
   function deletePerson(address creator) public {
@@ -52,7 +50,6 @@ contract Require{
   function getCreator(uint index) public view returns(address){
       require(msg.sender == owner, "Caller needs to be owner");
       return creators[index];
->>>>>>> b4adb40de50418a4a80171c3f5d67e340d77dbc5
   }
 
   function deletePerson(address creator) public {
@@ -63,5 +60,5 @@ contract Require{
   function getCreator(uint index) public view returns(address){
       require(msg.sender == owner, "Caller needs to be owner");
       return creators[index];
-  }  
+  }
 }
