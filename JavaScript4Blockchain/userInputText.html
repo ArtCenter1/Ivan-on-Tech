@@ -5,8 +5,9 @@
 
 <script>
 $(document).ready(function(){
-  $("button").click(function(){
-      alert("You type in " + $("input").val())
+  $("#theButton").click(function(){
+    var textInputted =$("#theInput").val();
+      alert(textInputted);
   });
 });
 </script>
@@ -14,10 +15,8 @@ $(document).ready(function(){
 
 <body>
   <h3> user input exercise</h3>
-  <p> Tupe in your text <input type="text" id ="input" ></p>
-
-  <button> Show Alert! </button>
-
+  <p> Type in your text <input id ="theInput" type="text" /></p>
+  <button id="theButton">Show written text </button>
 </body>
 
 </html>
