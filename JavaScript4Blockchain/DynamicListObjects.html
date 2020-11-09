@@ -1,0 +1,50 @@
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+  <h1> Dynamic List User Input exercise</h1>
+  <h3>My favorite fruits</h3>
+  <ol id ="fruitList">
+  </ol>
+  <input id="fruitNameInput" placeholder ="write fruit name" type ="text"/>
+  <input id="fruitWeightInput" placeholder ="write fruit weight" type ="text"/>
+  <input id="fruitColorInput" placeholder ="write fruit color" type ="text"/>
+  <button id="addFruitButton">Add fruit</button>
+
+  <script>
+
+   var fruits = [{name:"Apple", color: "Green", wight: 10},
+                 {name:"Orange", color: "Orange", wight: 13},
+                 {name:"Banana", color: "Yellow", wight: 20}];
+
+   function redrawList(){
+     var list = $("#fruitList");
+     list.html("");
+     $.each(fruits,function(index,value){
+      $("<li/>").text(value.name+", "+value.color+", "+ value.weight).appendTo(list);
+     });
+   }
+
+   redrawList();
+
+   $("#addFruitButton").click(function(){
+     var fruitName = $("#fruitNameInput").val();
+     var fruitWeight = $("#fruitWeightInput").val();
+     var fruitColor = $("#fruitColorInput").val();
+     var fruitObject = {name:fruitName, color: fruitColor, weight:parseInt(fruitWeight)};
+     fruits.push(fruitObject);
+
+     redrawList();
+   });
+
+
+  </script>
+
+</body>
+
+</html>
