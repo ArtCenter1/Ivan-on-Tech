@@ -1,0 +1,62 @@
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+  <h1> PhoneBook Exercise</h1>
+  <p>Click the button to get the person's number.</p>
+  <input id="nameInput" placeholder ="enter name" type="text"/>
+  <button id="numberOut" onclick="myFunction()">Number Inquery</button>
+  <p id="printOut"></p>
+  <script>
+  /*------------------------defalt solution ----------------------
+  var phonebook = {
+Carlos: 22334455 ,
+Gabba: 95959595 ,
+Ivo: 97959795 ,
+Taha: 12345678
+}
+var name = prompt( "Enter a name:" );
+if (name in phonebook) {
+let numb = phonebook[name];
+console .log( `The phone number to ${name} is ${numb} .` );
+}
+else {
+console .log( `We have not stored the number to ${name} .` );
+}
+-------------------------------------------------------*/
+//Create an object.
+//Fill the object with the following relations. The name should be key and the phone number should be the value:
+var phonebook = {
+Carlos: 22334455 ,
+Gabba: 95959595 ,
+Ivo: 97959795 ,
+Taha: 12345678
+}
+//Have the user enter a name,
+function myFunction(){
+var name = $("#nameInput").val();
+//print the phone number that belongs to that name.
+  if (name in phonebook) {
+    let numb = phonebook[name];
+      document.getElementById("printOut").innerHTML =
+      `The phone number to ${name} is ${numb} .`;
+
+/*If the user enters a name that does not exist in the object,
+give an error message stating that we have not saved this number.*/
+  }else {
+    document.getElementById("printOut").innerHTML =
+    `We have not stored the number to ${name} .`;
+
+  }
+}
+  </script>
+
+
+</body>
+
+</html>
