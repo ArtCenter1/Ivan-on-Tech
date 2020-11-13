@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <h1> Flag Color Exercise</h1>
+  <p>Click the button to get the color of the country flag.</p>
+  <input id="nameInput" placeholder ="enter country name" type="text"/>
+  <button onclick="myFunction()">Flag color</button>
+  <p id="printOut"></p>
+  <script>
+  /* ------------------ defalt solution --------------------
+  let flagObject = {
+  "norway" : [ "red" , "white" , "blue" ],
+  "sweden" : [ "blue" , "yellow" ],
+  "denmark" : [ "red" , "white" ],
+  "finland" : [ "white" , "blue" ],
+  "japan" : [ "red" , "white" ],
+  "gabon" : [ "green" , "yellow" , "blue" ],
+  "United Kingdom" : [ "red" , "blue" , "white" ],
+  "chile" : [ "blue" , "white" , "red" ]
+  }
+  console .log(flagObject);
+  flagObject[ "italy" ] = [ "green" , "white" , "red" ];
+  function findColor () {
+  let country = prompt( "Enter country to get the flag colors" );
+  // make sure the string is lowercase.
+  country = country.toLowerCase();
+  if (country in flagObject) {
+  console .log(flagObject[country]);
+  }
+  else {
+  console .log( "The country" , country, "is not in the
+  object" );
+  }
+  }
+  findColor();
+  ---------------------------------------------------------------*/
+//This object has the names of countries as key values and the colors of the flag of the countries as content values.
+var flagObject = {"norway": ["red", "white", "blue"],
+"sweden": ["blue", "yellow"],
+"denmark": ["red", "white"],
+"finland": ["white", "blue"],
+"japan": ["red", "white"],
+"gabon": ["green", "yellow", "blue"],
+"United Kingdom": ["red", "blue", "white"],
+"chile": ["blue", "white", "red"]
+}
+//Print the entire flagObject.
+console.log(flagObject);
+
+//Add a new country to the object.
+flagObject["taiwan"] = ["red", "blue", "white"]
+//Write a function that asks for a name as input, and prints the colors of the country’s flag.
+
+function myFunction(){
+  var name = $("#nameInput").val();
+  if(name in flagObject){
+    let color = flagObject[name];
+    document.getElementById("printOut").innerHTML =
+    ` The flag color of ${name} is ${color}.`;
+  }else {
+    document.getElementById("printOut").innerHTML =
+    "The country  " + $("#nameInput").val() +" is not in the object.";
+  }
+}
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+  <h1> Dynamic List exercise</h1>
+  <h3>My favorite fruits</h3>
+  <ol id ="fruitList">
+  </ol>
+
+  <script>
+
+   var fruits = ["Apple", "Orange", "Banana"];
+   var list = $("#fruitList");
+   $.each(fruits,function(index,value){
+    $("<li/>").text(value).appendTo(list);
+   });
+
+  </script>
+
+</body>
+
+</html>

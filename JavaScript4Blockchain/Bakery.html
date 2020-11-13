@@ -3,15 +3,49 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
-  var bakery = {name:"Croissant",value:2}
-
-</script>
 </head>
 
 <body>
   <h1> Bakery Objects Exercise</h1>
+  <li id = "bakeryList">
+  </li>
 
+  <script>
+  /*---------------------------defalt soulution ---------------------------
+  const bakery = {
+Crossiant: 2 ,
+Ciabatta: 1 ,
+Bread: 4 ,
+Donut: 2 ,
+Baguette: 3
+}
+console .log(bakery);
+bakery.Crossiant = 30 ;
+console .log(bakery);
+-------------------------------------------------------------------*/
+  // Make an empty object called a bakery.
+
+  var bakery = $("#bakeryList");
+  /*Fill the bakery with the following items,
+  where the name of the bakery is the key and its associated price is the value*/
+  var itemList =[{name:"Croissant", price:"€2"},
+                  {name:"Ciabatta", price:"€1"},
+                  {name:"Bread", price:"€4"},
+                  {name:"Donut", price:"€2"},
+                  {name:"Baguette", price:"€3"}];
+  //Print the entire object bakery.
+  function printList(){
+  $.each(itemList,function(index, value){
+    $("<li/>").text(value.name+","+value.price).appendTo(bakery);
+
+  });
+  }
+  printList();
+  //Increase the price of the croissant to 30, without changing the previous code.
+  itemList[0].price = "€30";
+  //Print the object again and check that the price of the croissant has changed correctly.
+  printList();
+  </script>
 
 </body>
 
