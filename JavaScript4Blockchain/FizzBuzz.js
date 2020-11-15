@@ -21,7 +21,7 @@ function fizzBuzz(a: number): string {
       }else if (a%3==0) {
         console.log("fizz");
       }else if (a%5==0) {
-        console.log("Buzz")
+        console.log("Buzz");
       }else{
         console.log(a);
         return '12';
