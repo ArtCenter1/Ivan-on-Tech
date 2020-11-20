@@ -2,7 +2,7 @@ const Helloworld = artifacts.require("Helloworld");
 
 module.exports = function(deployer) {
   deployer.deploy(Helloworld).then(function(instance){
-      instance.setMessage("Hello Vincent!").then(function(){
+      instance.setMessage("Hello Vincent!",{value: 1000000,from: account[0]}).then(function(){
         instance.getMessage().then(function(message){
           console.log("Current message: " + message);
         });
