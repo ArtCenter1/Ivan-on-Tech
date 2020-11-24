@@ -29,7 +29,7 @@
           physics:{
             default:"arcade",
             arcade:{
-              gravity:{y:200},
+              gravity:{y:300},
               debug:false
             }
           }
@@ -40,14 +40,40 @@
           console.log("game is loading assets");
           this.load.image("knight","assets/knight.png");
           this.load.image("crate","assets/crate.png");
+          this.load.image("background","assets/background.png");
+          this.load.image("bitcoin","assets/bitcoin.png");
+          // load the run animation frame
+
+          //for(i=10; i > 0; i–){
+            //this.load.image(“run_frame_”+i, “assets/knight/run/Run (”+i+").png");
+          //}
+          this.load.image("run_frame_1", "assets/knight/run/Run (1).png");
+          this.load.image("run_frame_2", "assets/knight/run/Run (2).png");
+          this.load.image("run_frame_3", "assets/knight/run/Run (3).png");
+          this.load.image("run_frame_4", "assets/knight/run/Run (4).png");
+          this.load.image("run_frame_5", "assets/knight/run/Run (5).png");
+          this.load.image("run_frame_6", "assets/knight/run/Run (6).png");
+          this.load.image("run_frame_7", "assets/knight/run/Run (7).png");
+          this.load.image("run_frame_8", "assets/knight/run/Run (8).png");
+          this.load.image("run_frame_9", "assets/knight/run/Run (9).png");
+          this.load.image("run_frame_10", "assets/knight/run/Run (10).png");
+
+          // load the idle animation frames
+          //for(i=10; i > 0; i–){
+            //this.load.image(“idle_frame_”+i, “assets/knight/idle/Idle (”+i+").png");
+          //}
+
+
         }
 
         function gameCreate(){
           // initial setup logic on the asset and othere setup
           console.log("game is setting up the assets etc");
+          // create background
+          this.add.image(300,150, "background");
           // create the knight
           knight = this.physics.add.sprite(200,100,"knight");
-          knight.body.setSize(400,600,10,0);
+          knight.body.setSize(200,600,10,0);
           knight.scaleX = 0.15;
           knight.scaleY = knight.scaleX;
 
@@ -67,7 +93,7 @@
 
           //crate in the air
           crates.create(440,360,"crate");
-          crates.create(440,460,"crate");
+          crates.create(480,460,"crate");
           crates.create(280,260,"crate");
           crates.create(180,220,"crate");
 
@@ -83,13 +109,16 @@
           if(cursors.left.isDown){
             knight.setVelocityX(-200);
             //knight.play("knight_run",true);
-            //knight.flipX = true;
+            knight.flipX = true;
           }
           else if(cursors.right.isDown){
             knight.setVelocityX(100);
           }
           else{
             knight.setVelocityX(0);
+          }
+          if(cursors.up.isDown && knight.body.touching.down){
+            knight.setVelocityY(-300);
           }
 
 
