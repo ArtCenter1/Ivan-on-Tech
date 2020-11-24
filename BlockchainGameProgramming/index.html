@@ -10,10 +10,12 @@
       <h2>H2 title</h2>
 
       <script>
+      var cursors;
+      var knight;
+      var crates;
+      var coinTimer;
+      var score = 0;
         //configure the game(hight, width, render-type, game loop)
-        var cursors;
-        var knight;
-        var crates;
         var config ={
           width: 800,
           height: 500,
@@ -27,7 +29,7 @@
           physics:{
             default:"arcade",
             arcade:{
-              gravity:{y:300},
+              gravity:{y:200},
               debug:false
             }
           }
@@ -38,21 +40,14 @@
           console.log("game is loading assets");
           this.load.image("knight","assets/knight.png");
           this.load.image("crate","assets/crate.png");
-          this.load.image("background","assets/background.png");
-
-          //for(i=10; i > 0; i–){
-            //this.load.image(“run_frame_”+i, “assets/knight/run/Run (”+i+").png");
-          //}
         }
 
         function gameCreate(){
           // initial setup logic on the asset and othere setup
           console.log("game is setting up the assets etc");
-          // create background
-          this.add.image(300,150, "background");
           // create the knight
           knight = this.physics.add.sprite(200,100,"knight");
-          knight.body.setSize(200,600,10,0);
+          knight.body.setSize(400,600,10,0);
           knight.scaleX = 0.15;
           knight.scaleY = knight.scaleX;
 
@@ -65,21 +60,30 @@
           crates.create(280,460,"crate");
           crates.create(360,460,"crate");
           crates.create(440,460,"crate");
+          crates.create(740,460,"crate");
+          crates.create(670,370,"crate");
+          crates.create(600,370,"crate");
+          crates.create(620,120,"crate");
 
           //crate in the air
           crates.create(440,360,"crate");
           crates.create(440,460,"crate");
           crates.create(280,260,"crate");
+          crates.create(180,220,"crate");
+
 
           this.physics.add.collider(crates, knight);
-          cursors =this.input.keyboard.createCursorkeys();
+
+          cursors = this.input.keyboard.createCursorKeys();
         }
 
         function gameUpdate(){
           // monitoring input and telling game how to update
           //console.log("game is updating");
           if(cursors.left.isDown){
-            knight.setVelocityX(-100);
+            knight.setVelocityX(-200);
+            //knight.play("knight_run",true);
+            //knight.flipX = true;
           }
           else if(cursors.right.isDown){
             knight.setVelocityX(100);
@@ -87,8 +91,9 @@
           else{
             knight.setVelocityX(0);
           }
-         }
 
+
+        }
 
         var game = new Phaser.Game(config);
       </script>
