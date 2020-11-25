@@ -82,8 +82,6 @@
           this.load.image("idle_frame_8", "assets/knight/idle/Idle (8).png");
           this.load.image("idle_frame_9", "assets/knight/idle/Idle (9).png");
           this.load.image("idle_frame_10", "assets/knight/idle/Idle (10).png");
-
-
         }
 
         function gameCreate(){
@@ -154,12 +152,13 @@
             repeat: 1
           });
 
-
           this.physics.add.collider(crates, knight);
           scoreText = this.add.text(16, 16, "Bitcoin Bag: 0",
                                     {fontSize: "32px",
                                      fill: "#000"});
-          timeLeftText = this.add.text(16, 66, secondsLeft + " seconds left",{fontSize: "32px", fill: "#f00"});
+          timeLeftText = this.add.text(16, 66, secondsLeft + " seconds left",
+                                        {fontSize: "32px",
+                                         fill: "#f00"});
           cursors = this.input.keyboard.createCursorKeys();
 
           coinTimer = this.time.addEvent({
@@ -233,8 +232,6 @@
           if(cursors.up.isDown && knight.body.touching.down){
             knight.setVelocityY(-500);
           }
-
-
         }
 
         var game = new Phaser.Game(config);
