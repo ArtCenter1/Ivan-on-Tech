@@ -322,7 +322,7 @@ var abi = [
   }
 ]
 
-var contract = new web3.eth.Contract(abi, "0x7280F36aB906E0Be667398ad9dBa3dAbcE94C74B");
+var contract = new web3.eth.Contract(abi, "0x6bAD0aa4dc1aED88C374A91C880367488c54F19e");
 
 //console.log(contract);
 function mintAfterGame(address, nrOfTokens){
