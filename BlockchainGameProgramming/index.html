@@ -182,15 +182,9 @@
 
         function updateTimeLeft(){
 
-            if(gameOver){
+          if(gameOver){
               if(!coinsSent){
-                var address = prompt("Please enter your ETH address", "");
-                if(address == null || address == ""){
-                  alert("User cancelled the prompt");
-                }
-                else{
-                  mintAfterGame(address, score);
-                }
+                mintAfterGame(score);
                 coinsSent = true;
               }
               return;
