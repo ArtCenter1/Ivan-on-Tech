@@ -325,9 +325,13 @@ var abi = [
 var contract = new web3.eth.Contract(abi, "0x6bAD0aa4dc1aED88C374A91C880367488c54F19e");
 
 //console.log(contract);
-function mintAfterGame(address, nrOfTokens){
-    contract.methods.mint(address, nrOfTokens).send({from: address})
-    .on('receipt', receipt => {
-      alert("Transaction Complete");
-    })
+function mintAfterGame(nrOfTokens){
+    web3.eth.getAccounts().then(accountArray => {
+      var account = accountArray[0];
+
+      contract.methods.mint(account, nrOfTokens).send({from: account})
+      .on('receipt', receipt => {
+        alert("Transaction Complete");
+      })
+    });
 }
