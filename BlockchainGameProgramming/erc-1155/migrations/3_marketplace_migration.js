@@ -1,5 +1,5 @@
 var Marketplace = artifacts.require("./Marketplace.sol");
-var Token = artifacts.require("./Token.sol");
+var Token = artifacts.require("./GameToken.sol");
 
 module.exports = (deployer, network, [owner]) => deployer
 .then(() => deployMarketplace(deployer))
