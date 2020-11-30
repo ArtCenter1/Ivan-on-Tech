@@ -7,7 +7,7 @@ contract Marketplace {
 
     IERC1155 private _token;
 
-    mapping (uint => uint) price;
+    mapping (uint256 => uint256) price;
 
     constructor (IERC1155 token) public {
         require(address(token) != address(0));
