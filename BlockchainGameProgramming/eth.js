@@ -1,7 +1,7 @@
 web3 = new Web3(web3.currentProvider);
 ethereum.enable();
 
-var abi = [
+var marketplaceAbi= [
   {
     "constant": true,
     "inputs": [
@@ -426,10 +426,50 @@ var token = new web3.eth.Contract(tokenAbi, "0xA016bAF219170B9E7e20Cb39f76168d0f
 var marketplace = new web3.eth.Contract(marketplaceAbi, "0xd86a7e7538bFD79FF0759573e2d04a93be8F4026");
 //console.log(contract);
 function mintAfterGame(nrOfTokens){
-    web3.eth.getAccounts().then(accountArray => {
-      var account = accountArray[0];
+      web3.eth.getAccounts().then(accountArray => {
+        var account = accountArray[0];
 
-      contract.methods.mint(account, nrOfTokens).send({from: account})
+        contract.methods.mint(account, nrOfTokens).send({from: account})
+        .on('receipt', receipt => {
+          alert("Transaction Complete");
+        })
+      });
+}
+
+function getUserItems(){
+  web3.eth.getAccounts().then(accountArray => {
+    var account = accountArray[0];
+
+    var tokenPromise1 = token.methods.balanceOf(account, 1).call();
+    var tokenPromise2 = token.methods.balanceOf(account, 2).call();
+    var tokenPromise3 = token.methods.balanceOf(account, 3).call();
+
+    Promise.all([tokenPromise1, tokenPromise2, tokenPromise3]).then(values => {
+      console.log(values);
+      if(values[0] > 0)
+        console.log("User has item 1");
+      if(values[1] > 0)
+        console.log("User has item 2");
+      if(values[2] > 0)
+        console.log("User has item 3");
+    })
+  });
+}
+function buy(id){
+
+    web3.eth.getAccounts().then(accountArray => {
+      var options = {
+        from: accountArray[0],
+        value: 0
+      };
+      if(id == 1)
+        options.value = 100000000000000;
+      else if(id == 2)
+        options.value = 200000000000000;
+      else if(id == 3)
+        options.value = 300000000000000;
+
+      marketplace.methods.buyToken(id).send(options)
       .on('receipt', receipt => {
         alert("Transaction Complete");
       })
