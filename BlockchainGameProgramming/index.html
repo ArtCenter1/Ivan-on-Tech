@@ -8,8 +8,14 @@
 </head>
 
 <body>
-
-    <h1>PUMP YOUR BAG</h1>
+  <h1>PUMP YOUR BAG</h1>
+  <br>
+  <button onclick="buy(1)">Buy Pump Talisman, 0.0001 eth</button>
+  <br>
+  <button onclick="buy(2)">Buy Super Boots, 0.0002 eth</button>
+  <br>
+  <button onclick="buy(3)">Buy Time Warp Cape, 0.0003 eth</button>
+  <br><br>
 
     <script>
 
@@ -27,6 +33,13 @@
 
         var gameOver = false;
         var coinsSent = false;
+
+        // PUMP Talisman
+        var COIN_GENERATION_INTERVAL = 3000;
+        // Super boots
+        var PLAYER_SPEED = 300;
+        // Time Warp Cape
+        var GAME_SECOND = 1000;
 
         // configure the game (height, width, render-type, game loop function)
         var config = {
@@ -162,12 +175,13 @@
 
             cursors = this.input.keyboard.createCursorKeys();
 
-            coinTimer = this.time.addEvent({ delay: Phaser.Math.Between(1000,3000),
+            console.log("Creating coin timer with COIN_GENERATION_INTERVAL ", COIN_GENERATION_INTERVAL);
+            coinTimer = this.time.addEvent({ delay: COIN_GENERATION_INTERVAL,
                                             callback: generateCoins,
                                             callbackScope: this,
                                             repeat: -1});
 
-            timeLeftTimer = this.time.addEvent({ delay: 1000,
+            timeLeftTimer = this.time.addEvent({ delay: GAME_SECOND,
                                             callback: updateTimeLeft,
                                             callbackScope: this,
                                             repeat: -1});
