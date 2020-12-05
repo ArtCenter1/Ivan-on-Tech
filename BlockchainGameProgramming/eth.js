@@ -436,7 +436,8 @@ function mintAfterGame(nrOfTokens){
       });
 }
 
-function getUserItems(){
+function getUserItems(callback){
+
   web3.eth.getAccounts().then(accountArray => {
     var account = accountArray[0];
 
@@ -445,16 +446,26 @@ function getUserItems(){
     var tokenPromise3 = token.methods.balanceOf(account, 3).call();
 
     Promise.all([tokenPromise1, tokenPromise2, tokenPromise3]).then(values => {
-      console.log(values);
-      if(values[0] > 0)
-        console.log("User has item 1");
-      if(values[1] > 0)
-        console.log("User has item 2");
-      if(values[2] > 0)
-        console.log("User has item 3");
+
+        console.log(values);
+
+        var numberOfTalismans = values[0];
+        var numberOfBoots = values[1];
+        var numberOfCapes = values[2];
+
+        if(numberOfTalismans > 0)
+          COIN_GENERATION_INTERVAL = COIN_GENERATION_INTERVAL * Math.pow(0.75,numberOfTalismans);
+        if(numberOfBoots > 0)
+          PLAYER_SPEED = PLAYER_SPEED * Math.pow(1.3,numberOfBoots);
+        if(numberOfCapes > 0)
+          GAME_SECOND = GAME_SECOND * Math.pow(1.5, numberOfCapes);
+
+        callback();
+
     })
   });
 }
+
 function buy(id){
 
     web3.eth.getAccounts().then(accountArray => {
