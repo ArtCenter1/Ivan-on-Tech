@@ -1,17 +1,133 @@
 web3 = new Web3(web3.currentProvider);
 ethereum.enable();
-
-var marketplaceAbi= [
+var gameTokenAbi = [
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "name",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x06fdde03"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "approve",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x095ea7b3"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x18160ddd"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "transferFrom",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x23b872dd"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "decimals",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x313ce567"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "name": "addedValue",
+        "type": "uint256"
+      }
+    ],
+    "name": "increaseAllowance",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x39509351"
+  },
   {
     "constant": true,
     "inputs": [
       {
-        "name": "_owner",
+        "name": "account",
         "type": "address"
-      },
-      {
-        "name": "_id",
-        "type": "uint256"
       }
     ],
     "name": "balanceOf",
@@ -24,41 +140,36 @@ var marketplaceAbi= [
     "payable": false,
     "stateMutability": "view",
     "type": "function",
-    "signature": "0x00fdd58e"
+    "signature": "0x70a08231"
   },
   {
-    "constant": false,
-    "inputs": [
+    "constant": true,
+    "inputs": [],
+    "name": "symbol",
+    "outputs": [
       {
-        "name": "_initialSupply",
-        "type": "uint256"
-      },
-      {
-        "name": "_uri",
+        "name": "",
         "type": "string"
       }
     ],
-    "name": "create",
-    "outputs": [
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x95d89b41"
+  },
+  {
+    "constant": false,
+    "inputs": [
       {
-        "name": "_id",
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "name": "subtractedValue",
         "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x0118fa49"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_interfaceId",
-        "type": "bytes4"
-      }
-    ],
-    "name": "supportsInterface",
+    "name": "decreaseAllowance",
     "outputs": [
       {
         "name": "",
@@ -66,248 +177,73 @@ var marketplaceAbi= [
       }
     ],
     "payable": false,
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function",
-    "signature": "0x01ffc9a7"
+    "signature": "0xa457c2d7"
   },
   {
     "constant": false,
     "inputs": [
       {
-        "name": "_from",
+        "name": "recipient",
         "type": "address"
       },
       {
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "name": "_ids",
-        "type": "uint256[]"
-      },
-      {
-        "name": "_values",
-        "type": "uint256[]"
-      },
-      {
-        "name": "_data",
-        "type": "bytes"
+        "name": "amount",
+        "type": "uint256"
       }
     ],
-    "name": "safeBatchTransferFrom",
-    "outputs": [],
+    "name": "transfer",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function",
-    "signature": "0x2eb2c2d6"
+    "signature": "0xa9059cbb"
   },
   {
     "constant": true,
     "inputs": [
       {
-        "name": "_owners",
-        "type": "address[]"
+        "name": "owner",
+        "type": "address"
       },
       {
-        "name": "_ids",
-        "type": "uint256[]"
+        "name": "spender",
+        "type": "address"
       }
     ],
-    "name": "balanceOfBatch",
+    "name": "allowance",
     "outputs": [
       {
         "name": "",
-        "type": "uint256[]"
+        "type": "uint256"
       }
     ],
     "payable": false,
     "stateMutability": "view",
     "type": "function",
-    "signature": "0x4e1273f4"
+    "signature": "0xdd62ed3e"
   },
   {
-    "constant": false,
     "inputs": [
       {
-        "name": "_uri",
+        "name": "_name",
         "type": "string"
       },
       {
-        "name": "_id",
-        "type": "uint256"
-      }
-    ],
-    "name": "setURI",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x67db3b8f"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_operator",
-        "type": "address"
+        "name": "_symbol",
+        "type": "string"
       },
       {
-        "name": "_approved",
-        "type": "bool"
+        "name": "_decimals",
+        "type": "uint8"
       }
     ],
-    "name": "setApprovalForAll",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xa22cb465"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "nonce",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0xaffed0e0"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "creators",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0xcd53d08e"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "uint256"
-      },
-      {
-        "name": "_to",
-        "type": "address[]"
-      },
-      {
-        "name": "_quantities",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "mint",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xcfa84fc1"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "ERC1155_RECEIVED",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bytes4"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0xe0a5c949"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_owner",
-        "type": "address"
-      },
-      {
-        "name": "_operator",
-        "type": "address"
-      }
-    ],
-    "name": "isApprovedForAll",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0xe985e9c5"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_from",
-        "type": "address"
-      },
-      {
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "name": "_id",
-        "type": "uint256"
-      },
-      {
-        "name": "_value",
-        "type": "uint256"
-      },
-      {
-        "name": "_data",
-        "type": "bytes"
-      }
-    ],
-    "name": "safeTransferFrom",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xf242432a"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "ERC1155_BATCH_RECEIVED",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bytes4"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0xfc67bf1c"
-  },
-  {
-    "inputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "constructor",
@@ -318,107 +254,140 @@ var marketplaceAbi= [
     "inputs": [
       {
         "indexed": true,
-        "name": "_operator",
+        "name": "from",
         "type": "address"
       },
       {
         "indexed": true,
-        "name": "_from",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event",
+    "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "owner",
         "type": "address"
       },
       {
         "indexed": true,
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "Approval",
+    "type": "event",
+    "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
         "name": "_to",
         "type": "address"
       },
       {
-        "indexed": false,
-        "name": "_id",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
         "name": "_value",
         "type": "uint256"
       }
     ],
-    "name": "TransferSingle",
-    "type": "event",
-    "signature": "0xc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
+    "name": "mint",
+    "outputs": [
       {
-        "indexed": true,
-        "name": "_operator",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "_from",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_ids",
-        "type": "uint256[]"
-      },
-      {
-        "indexed": false,
-        "name": "_values",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "TransferBatch",
-    "type": "event",
-    "signature": "0x4a39dc06d4c0dbc64b70af90fd698a233a518aa5d07e595d983b8c0526c8f7fb"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_owner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "_operator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_approved",
+        "name": "",
         "type": "bool"
       }
     ],
-    "name": "ApprovalForAll",
-    "type": "event",
-    "signature": "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31"
-  },
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x40c10f19"
+  }
+]
+var marketplaceAbi= [
   {
-    "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
-        "name": "_value",
-        "type": "string"
-      },
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor",
+    "signature": "constructor"
+  },
+  {
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "fallback"
+  },
+  {
+    "constant": false,
+    "inputs": [
       {
-        "indexed": true,
-        "name": "_id",
+        "name": "tokenId",
         "type": "uint256"
       }
     ],
-    "name": "URI",
-    "type": "event",
-    "signature": "0x6bb7ff708619ba0610cba295a58592e0451dee2622938c8755667688daf3529b"
+    "name": "buyTokens",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function",
+    "signature": "0x3610724e"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_operator",
+        "type": "address"
+      },
+      {
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "name": "_value",
+        "type": "uint256"
+      },
+      {
+        "name": "_data",
+        "type": "bytes"
+      }
+    ],
+    "name": "onERC1155Received",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes4"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xf23a6e61"
   }
 ]
 var tokenAbi = [
@@ -841,14 +810,16 @@ var tokenAbi = [
     "signature": "0x6bb7ff708619ba0610cba295a58592e0451dee2622938c8755667688daf3529b"
   }
 ]
-var token = new web3.eth.Contract(tokenAbi, "0xA016bAF219170B9E7e20Cb39f76168d0fe50306e");
-var marketplace = new web3.eth.Contract(marketplaceAbi, "0xd86a7e7538bFD79FF0759573e2d04a93be8F4026");
+
+var gameToken = new web3.eth.Contract(gameTokenAbi, "0xac143bfFc7AbfA0070057d8A3B1DBa99735EaB1b");
+var token = new web3.eth.Contract(tokenAbi, "0x2082823e31EcbDF217aB8f32BCEE074E43E9Af3c");
+var marketplace = new web3.eth.Contract(marketplaceAbi, "0x7ADE0b66e7FE06C80bFc03B39A561e58aF7f91B0");
 //console.log(contract);
 function mintAfterGame(nrOfTokens){
       web3.eth.getAccounts().then(accountArray => {
         var account = accountArray[0];
 
-        contract.methods.mint(account, nrOfTokens).send({from: account})
+        gameToken.methods.mint(account, nrOfTokens).send({from: account})
         .on('receipt', receipt => {
           alert("Transaction Complete");
         })
@@ -899,7 +870,7 @@ function buy(id){
       else if(id == 3)
         options.value = 300000000000000;
 
-      marketplace.methods.buyToken(id).send(options)
+      marketplace.methods.buyTokens(id).send(options)
       .on('receipt', receipt => {
         alert("Transaction Complete");
       })
