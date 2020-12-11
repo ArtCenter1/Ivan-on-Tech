@@ -1,10 +1,6 @@
-var Token = artifacts.require("./GameToken.sol");
 
-module.exports = (deployer, network, [owner]) => deployer
-  .then(() => deployToken(deployer));
+var GameToken = artifacts.require("./GameToken.sol");
 
-function deployToken(deployer){
-  return deployer.deploy(
-      Token
-    );
+module.exports = function(deployer) {
+  deployer.deploy(GameToken, "GameToken", "GT", 0);
 }

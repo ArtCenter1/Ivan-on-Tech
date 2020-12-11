@@ -9,6 +9,7 @@
   "dependencies": {
     "@truffle/hdwallet-provider": "^1.2.0",
     "bignumber.js": "^4.1.0",
+    "openzeppelin-solidity": "^2.5.0",
     "truffle-hdwallet-provider": "^1.0.17"
   },
   "devDependencies": {
