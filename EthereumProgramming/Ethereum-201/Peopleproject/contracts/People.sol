@@ -2,7 +2,7 @@
 import "./Ownable.sol";
 pragma solidity 0.5.12;
 
-contract HelloWorld is Ownable{
+contract People is Ownable{
 
     struct Person {
       uint id;
