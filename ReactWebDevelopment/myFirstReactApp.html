@@ -18,20 +18,20 @@
         document.getElementById('root')
       );
     */ 
-    class HelloMessage extends React.Component {
-  render() {
-    return (
-      <div>
-        Hello {this.props.name}
-      </div>
-    );
+  class HelloMessage extends React.Component {
+    render() {
+      return (
+        <div>
+          Hello {this.props.name}
+        </div>
+      );
+    }
   }
-}
 
-ReactDOM.render(
-  <HelloMessage name="Taylor" />,
-  document.getElementById('root')
-); 
+  ReactDOM.render(
+    <HelloMessage name="Taylor" />,
+    document.getElementById('root')
+  ); 
     </script>
     <!--
       Note: this page is a great way to try React but it's not suitable for production.
